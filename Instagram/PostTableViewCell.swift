@@ -71,7 +71,7 @@ class PostTableViewCell: UITableViewCell {
             //入力したテキストを取得
             let currentText = self.commentTextView.text
             //入力したテキストをtextViewに表示
-            self.commentTextView.text = (currentText ?? "") + "\n\(postData.name!) : \(comment)"
+            self.commentTextView.text = (currentText ?? "") + "\n\(comment)"
         }
     }
 }

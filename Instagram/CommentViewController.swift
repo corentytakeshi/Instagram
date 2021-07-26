@@ -25,11 +25,13 @@ class CommentViewController: UIViewController {
             // HUDで投稿処理中の表示を開始
             SVProgressHUD.show()
             
-        if let text = textField.text {
+        if let text = textField.text, let name = Auth.auth().currentUser?.displayName {
+            //  コメントの生成
+            let comment = "\(name) : \(text)"
             // FireStoreに投稿データを保存する
             var updateValue: FieldValue
             // コメント追加する更新データを作成
-            updateValue = FieldValue.arrayUnion([text])
+            updateValue = FieldValue.arrayUnion([comment])
             // commentsに更新データを書き込む
             let postRef = Firestore.firestore().collection(Const.PostPath).document(postData.id)
             postRef.updateData(["comments": updateValue])
